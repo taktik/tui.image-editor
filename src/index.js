@@ -1,3 +1,8 @@
+import 'fabric';
+import 'tui-code-snippet';
+import 'file-saver';
+import 'tui-color-picker';
+
 import './js/polyfill';
 import ImageEditor from './js/imageEditor';
 import './css/index.styl';
@@ -23,4 +28,29 @@ import './js/command/rotate';
 import './js/command/setObjectProperties';
 import './js/command/setObjectPosition';
 
-module.exports = ImageEditor;
+// module.exports = ImageEditor;
+
+import whiteTheme from './js/theme/white-theme.js';
+import blackTheme from './js/theme/black-theme.js';
+
+export function createView(container, path, useBlackTheme, onSave) {
+    const imageEditor = new ImageEditor(container, onSave, {
+        includeUI: {
+            loadImage: {
+                path,
+                name: 'ozoneImage'
+            },
+            theme: useBlackTheme ? blackTheme : whiteTheme,
+            initMenu: 'filter',
+            menuBarPosition: 'bottom'
+        },
+        cssMaxWidth: 700,
+        cssMaxHeight: 500
+    });
+
+    window.onresize = function() {
+        imageEditor.ui.resizeEditor();
+    };
+}
+window.createView = createView;
+module.exports = createView;

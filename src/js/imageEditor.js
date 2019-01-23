@@ -72,11 +72,13 @@ const {isUndefined, forEach, CustomEvents} = snippet;
  * });
  */
 class ImageEditor {
-    constructor(wrapper, options) {
+    constructor(wrapper, onSave, options) {
         options = snippet.extend({
             includeUI: false,
             usageStatistics: true
         }, options);
+
+        this.onSaveCallback = onSave;
 
         this.mode = null;
 

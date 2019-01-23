@@ -95,20 +95,23 @@ export default {
             },
             download: () => {
                 const dataURL = this.toDataURL();
-                let imageName = this.getImageName();
-                let blob, type, w;
+                // let imageName = this.getImageName();
+                // let blob, type, w;
+                // console.log('download fct, imageName=%s', imageName);
+                //
+                // if (util.isSupportFileApi() && window.saveAs) {
+                //     blob = util.base64ToBlob(dataURL);
+                //     type = blob.type.split('/')[1];
+                //     if (imageName.split('.').pop() !== type) {
+                //         imageName += `.${type}`;
+                //     }
+                //     saveAs(blob, imageName); // eslint-disable-line
+                // } else {
+                //     w = window.open();
+                //     w.document.body.innerHTML = `<img src='${dataURL}'>`;
+                // }
 
-                if (util.isSupportFileApi() && window.saveAs) {
-                    blob = util.base64ToBlob(dataURL);
-                    type = blob.type.split('/')[1];
-                    if (imageName.split('.').pop() !== type) {
-                        imageName += `.${type}`;
-                    }
-                    saveAs(blob, imageName); // eslint-disable-line
-                } else {
-                    w = window.open();
-                    w.document.body.innerHTML = `<img src='${dataURL}'>`;
-                }
+                this.onSaveCallback(dataURL);
             }
         }, this._commonAction());
     },
