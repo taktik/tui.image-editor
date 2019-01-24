@@ -94,7 +94,7 @@ export default {
                 ));
             },
             download: () => {
-                const dataURL = this.toDataURL();
+                const dataURL = this.toDataURL({format: 'jpeg'});
                 // let imageName = this.getImageName();
                 // let blob, type, w;
                 // console.log('download fct, imageName=%s', imageName);
