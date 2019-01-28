@@ -52,5 +52,5 @@ export function createView(container, path, useBlackTheme, onSave) {
         imageEditor.ui.resizeEditor();
     };
 }
-window.createView = createView;
+window.createToastEditorView = createView;
 module.exports = createView;
